@@ -1037,22 +1037,26 @@ body {
 
 .volume-container {
     position: absolute;
-    right: -80px; /* Position it to the right of the volume button */
+    right: -5px;
     top: 50%;
     transform: translateY(-50%);
     width: 80px;
     height: 30px;
-    background-color: rgba(30, 27, 46, 0.95);
+    /* background-color: rgba(30, 27, 46, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 0 10px; */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 10px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
 }
 
@@ -1246,34 +1250,6 @@ body {
 .song-item.active .song-item-play {
     background: linear-gradient(120deg, var(--primary), var(--secondary));
     box-shadow: 0 0 10px rgba(108, 99, 255, 0.4);
-}
-
-/* Improved volume container visibility and interaction */
-.volume-container.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.volume-handle {
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    width: 12px;
-    height: 12px;
-    background-color: #fff;
-    border-radius: 50%;
-    transform: translate(-50%, 50%);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    cursor: grab;
-    transition: transform 0.1s ease;
-}
-
-.volume-handle:active,
-.volume-handle.active {
-    cursor: grabbing;
-    transform: translate(-50%, 50%) scale(1.2);
-    box-shadow: 0 2px 8px rgba(108, 99, 255, 0.6);
 }
 
 /* Make media queries for responsive design */
