@@ -11,17 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const miscIcon = document.getElementById('miscellaneous-icon');
     const miscModal = document.getElementById('miscellaneous-modal');
     
-    // Setup modals
     setupModal(bioIcon, bioModal);
     setupModal(miscIcon, miscModal);
     
-    // Initialize the image carousel when the miscellaneous icon is clicked
     miscIcon.addEventListener('click', initImageCarousel);
 
-    // Initialize typing animation
     initTypingAnimation();
 
-    // Contact widget functionality
     const contactWidget = document.getElementById('contact-widget');
     const contactCard = document.getElementById('contact-card');
     const closeContact = document.querySelector('.close-contact');
@@ -50,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Music widget functionality
     const musicWidget = document.getElementById('music-widget');
     const songListModal = document.getElementById('song-list-modal');
     
@@ -59,10 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
         songListModal.classList.add('visible');
     });
     
-    // Setup modal for song list
     setupModal(musicWidget, songListModal);
 
-    // Fox animation
     const fox = document.querySelector('.fox');
     let foxAnimationInProgress = false;
     
@@ -72,24 +65,20 @@ document.addEventListener('DOMContentLoaded', function() {
         foxAnimationInProgress = true;
         const foxImg = fox;
         
-        // Shock state
         foxImg.src = 'assets/images/fox/fox-shock-left.png';
         
         setTimeout(() => {
             foxImg.src = 'assets/images/fox/fox-post-trauma-left-1.png';
         }, 300);
         
-        // Second post-trauma state after 0.6s (0.3s + 0.3s)
         setTimeout(() => {
             foxImg.src = 'assets/images/fox/fox-post-trauma-left-2.png';
         }, 600);
         
-        // Idle state after 1.4s (0.3s + 0.3s + 0.8s)
         setTimeout(() => {
             foxImg.src = 'assets/images/fox/fox-idle-left.png';
         }, 1400);
         
-        // Back to sleep after 2.4s (0.2s + 0.3s + 0.8s + 1s)
         setTimeout(() => {
             foxImg.src = 'assets/images/fox/fox-sleeping.gif';
             foxAnimationInProgress = false;
@@ -126,7 +115,6 @@ function setupModal(iconElement, modalElement) {
     });
 }
 
-// Image carousel functionality
 function initImageCarousel() {
     const images = [
         { src: 'assets/images/misc/arghhh.jpg', caption: 'Arghhhhhhh!!!' },
@@ -152,13 +140,10 @@ function initImageCarousel() {
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     
-    // Set total photos count
     totalPhotosElement.textContent = images.length;
     
-    // Clear previous content
     carouselInner.innerHTML = '';
     
-    // Create carousel items
     images.forEach((image, index) => {
         const item = document.createElement('div');
         item.classList.add('carousel-item');
@@ -172,12 +157,10 @@ function initImageCarousel() {
         carouselInner.appendChild(item);
     });
     
-    // Set initial caption
     if (images.length > 0) {
         captionElement.textContent = images[0].caption;
     }
     
-    // Start rotation
     let currentIndex = 0;
     let rotationInterval;
     
@@ -187,7 +170,6 @@ function initImageCarousel() {
         
         items[currentIndex].classList.add('active');
         
-        // Update caption and counter
         captionElement.textContent = images[currentIndex].caption;
         currentPhotoElement.textContent = currentIndex + 1;
     }
@@ -197,7 +179,6 @@ function initImageCarousel() {
         updateCarousel();
     }
     
-    // Navigation handlers
     prevBtn.addEventListener('click', () => {
         clearInterval(rotationInterval);
         currentIndex = (currentIndex - 1 + images.length) % images.length;
@@ -214,7 +195,6 @@ function initImageCarousel() {
     
     function startRotation() {
         clearInterval(rotationInterval);
-        // Rotate every 5 seconds
         rotationInterval = setInterval(rotateImages, 8000);
     }
 
@@ -230,7 +210,7 @@ function updateDateTime() {
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
-    hours = hours ? hours : 12; // Convert 0 to 12
+    hours = hours ? hours : 12;
     
     const timeString = `${hours}:${minutes} ${ampm}`;
     
@@ -244,36 +224,29 @@ function createStars() {
         const star = document.createElement('div');
         star.classList.add('star');
         
-        // Randomize star size
         const sizeClass = Math.random() < 0.6 ? 'small' : (Math.random() < 0.8 ? 'medium' : 'large');
         star.classList.add(sizeClass);
         
-        // Randomize position
         const posX = Math.random() * 100;
         const posY = Math.random() * 100;
         
         star.style.left = `${posX}%`;
         star.style.top = `${posY}%`;
         
-        // Updated star colors
         const colors = ['#ffffff', '#fffae0', '#FFE87C', '#e0e8ff', '#e0f0ff', '#d1d1ff'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         star.style.backgroundColor = randomColor;
         
-        // Randomize opacity
         const baseOpacity = Math.random() * 0.5 + 0.3;
         star.style.opacity = baseOpacity;
         
-        // Add glow effect to some stars
         if (Math.random() > 0.7) {
             star.style.boxShadow = `0 0 ${Math.random() * 5 + 2}px ${randomColor}`;
         }
         
-        // Add blinking effect to some stars
         if (Math.random() > 0.5) {
             star.classList.add('blink');
             
-            // Randomize animation duration and delay
             const duration = 2 + Math.random() * 6;
             const delay = Math.random() * 7;
             star.style.animationDuration = `${duration}s`;
@@ -286,7 +259,6 @@ function createStars() {
         nightSky.appendChild(star);
     }
     
-    // Add subtle movement to stars to enhance the effect
     setInterval(() => {
         const stars = document.querySelectorAll('.star');
         stars.forEach(star => {
@@ -307,7 +279,6 @@ function createShootingStars() {
         const shootingStar = document.createElement('div');
         shootingStar.classList.add('shooting-star');
         
-        // Random position and size
         const width = Math.random() * 150 + 50;
         shootingStar.style.width = `${width}px`;
         
@@ -317,7 +288,6 @@ function createShootingStars() {
         shootingStar.style.left = `${startX}px`;
         shootingStar.style.top = `${startY}px`;
         
-        // Random animation delay and duration
         const delay = Math.random() * 15;
         const duration = Math.random() * 2 + 2;
         
@@ -350,7 +320,6 @@ function addIntermittentBlinkingStars() {
             
             nightSky.appendChild(brightStar);
             
-            // Animate the star blinking and then remove it
             setTimeout(() => {
                 brightStar.style.animation = 'blink 1s 3';
                 setTimeout(() => {
@@ -365,7 +334,7 @@ function initTypingAnimation() {
     const textElement = document.getElementById('typing-text');
     const plainText = "Welcome to ";
     const highlightText = "techmoocher's portfolio";
-    const exclamation = "!"; // Fixed the syntax error here (removed extra parenthesis)
+    const exclamation = "!";
     
     const fullText = plainText + highlightText + exclamation;
     const fullHtml = `${plainText}<span class="tech-highlight">${highlightText}</span>${exclamation}`;
@@ -381,14 +350,13 @@ function initTypingAnimation() {
             index++;
             
             if (index <= plainText.length) {
-                // Typing the plain part
                 textElement.innerHTML = fullText.substring(0, index);
-            } else if (index <= plainText.length + highlightText.length) {
-                // Typing the highlight part
+            }
+            else if (index <= plainText.length + highlightText.length) {
                 const highlightPart = highlightText.substring(0, index - plainText.length);
                 textElement.innerHTML = `${plainText}<span class="tech-highlight">${highlightPart}</span>`;
-            } else {
-                // Typing the exclamation
+            }
+            else {
                 textElement.innerHTML = `${plainText}<span class="tech-highlight">${highlightText}</span>${fullText.substring(plainText.length + highlightText.length, index)}`;
             }
             
@@ -403,14 +371,13 @@ function initTypingAnimation() {
             index--;
             
             if (index > plainText.length + highlightText.length) {
-                // Erasing the exclamation
                 textElement.innerHTML = `${plainText}<span class="tech-highlight">${highlightText}</span>${fullText.substring(plainText.length + highlightText.length, index)}`;
-            } else if (index > plainText.length) {
-                // Erasing the highlight part
+            }
+            else if (index > plainText.length) {
                 const highlightPart = highlightText.substring(0, index - plainText.length);
                 textElement.innerHTML = `${plainText}<span class="tech-highlight">${highlightPart}</span>`;
-            } else {
-                // Erasing the plain part
+            }
+            else {
                 textElement.innerHTML = fullText.substring(0, index);
             }
             
@@ -428,20 +395,16 @@ function initTypingAnimation() {
 }
 
 function setupFakeCursor() {
-    // Create fake cursor element
     const fakeCursor = document.createElement('div');
     fakeCursor.classList.add('fake-cursor');
     document.body.appendChild(fakeCursor);
-    
-    // Get fox element position
+
     const fox = document.querySelector('.fox');
     const foxRect = fox.getBoundingClientRect();
     
-    // Function to show cursor hint
     function showCursorHint() {
         const updatedFoxRect = fox.getBoundingClientRect();
         
-        // Position cursor over the fox
         const cursorX = updatedFoxRect.left + updatedFoxRect.width * 0.6;
         const cursorY = updatedFoxRect.top + updatedFoxRect.height * 0.4;
         
@@ -453,11 +416,9 @@ function setupFakeCursor() {
         setTimeout(() => {
             fakeCursor.classList.add('clicking');
             
-            // Remove clicking class after animation
             setTimeout(() => {
                 fakeCursor.classList.remove('clicking');
                 
-                // Hide cursor after a delay
                 setTimeout(() => {
                     fakeCursor.classList.remove('visible');
                 }, 1000);
@@ -465,15 +426,12 @@ function setupFakeCursor() {
         }, 800);
     }
     
-    // Show hint periodically (every 15 seconds)
     setInterval(showCursorHint, 10000);
     
-    // Also show hint soon after page load
     setTimeout(showCursorHint, 5000);
 }
 
 function initMusicPlayer() {
-    // Music player elements
     const audioPlayer = document.getElementById('audio-player');
     const coverArt = document.getElementById('cover-art');
     const songTitle = document.getElementById('song-title');
@@ -505,11 +463,10 @@ function initMusicPlayer() {
     
     let currentSongIndex = 0;
     let isPlaying = false;
-    let isShuffle = true; // Default to shuffle mode
-    let playedSongs = []; // Keep track of played songs to avoid repeats
-    let isDraggingVolume = false; // Track if volume is being dragged
+    let isShuffle = true;
+    let playedSongs = [];
+    let isDraggingVolume = false;
     
-    // Make songs variable available globally
     window.songs = songs;
     window.currentSongIndex = currentSongIndex;
     window.tryLoadImage = tryLoadImage;
@@ -518,9 +475,8 @@ function initMusicPlayer() {
     function initPlayer() {
         // Start with a random song
         currentSongIndex = Math.floor(Math.random() * songs.length);
-        playedSongs.push(currentSongIndex); // Add initial song to played list
+        playedSongs.push(currentSongIndex);
         
-        // Store the current song index in the window object to ensure it's available globally
         window.currentSongIndex = currentSongIndex;
         
         loadSong(songs[currentSongIndex]);
@@ -646,13 +602,10 @@ function initMusicPlayer() {
     }
 
     function toggleVolumeControls() {
-        // Instead of showing/hiding, this now mutes/unmutes
         if (audioPlayer.volume > 0) {
-            // Store current volume before muting
             volumeBtn.dataset.previousVolume = audioPlayer.volume;
             audioPlayer.volume = 0;
         } else {
-            // Restore previous volume or set to max
             const previousVolume = parseFloat(volumeBtn.dataset.previousVolume) || 1.0;
             audioPlayer.volume = previousVolume;
         }
@@ -660,7 +613,6 @@ function initMusicPlayer() {
     }
     
     function updateVolumeUI() {
-        // Update for horizontal volume bar
         volumeProgress.style.width = `${audioPlayer.volume * 100}%`;
         volumeHandle.style.left = `${audioPlayer.volume * 100}%`;
 
@@ -677,7 +629,6 @@ function initMusicPlayer() {
     }
 
     function setVolume(e) {
-        // Updated for horizontal volume bar
         const rect = volumeSlider.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         let volumePercent = clickX / rect.width;
@@ -692,18 +643,17 @@ function initMusicPlayer() {
         e.preventDefault();
         isDraggingVolume = true;
         volumeHandle.classList.add('active');
-        volumeContainer.classList.add('active'); // Keep container visible
-        
-        // Add both mouse and touch event listeners
+        volumeContainer.classList.add('active');
+
         document.addEventListener('mousemove', handleVolumeDrag);
         document.addEventListener('touchmove', handleVolumeDrag, { passive: false });
         document.addEventListener('mouseup', stopVolumeHandleDrag);
         document.addEventListener('touchend', stopVolumeHandleDrag);
     }
 
+    // Handle volume dragging
     function handleVolumeDrag(e) {
         if (isDraggingVolume) {
-            // Get X position from either mouse or touch event
             const clientX = e.type.includes('touch') ? 
                 e.touches[0].clientX : e.clientX;
             
@@ -711,13 +661,11 @@ function initMusicPlayer() {
             const dragX = clientX - rect.left;
             let volumePercent = dragX / rect.width;
             
-            // Clamp volume between 0 and 1
             volumePercent = Math.max(0, Math.min(1, volumePercent));
             audioPlayer.volume = volumePercent;
             
             updateVolumeUI();
             
-            // Prevent default to avoid scrolling on mobile
             if (e.cancelable) e.preventDefault();
         }
     }
@@ -839,6 +787,7 @@ function initMusicPlayer() {
     initPlayer();
 }
 
+// Show the song list in a modal
 function showSongList() {
     const songListContainer = document.querySelector('.song-list');
     if (!songListContainer) {
@@ -954,10 +903,10 @@ function showSongList() {
         });
     });
     
-    // Focus the search input when the modal opens
     setTimeout(() => searchInput.focus(), 300);
 }
 
+// Play a song from the library
 function playSongFromLibrary(song) {
     const audioPlayer = document.getElementById('audio-player');
     if (!audioPlayer) {
@@ -970,15 +919,12 @@ function playSongFromLibrary(song) {
     );
     
     if (songIndex !== -1) {
-        // Store the currentSongIndex in the window object to share with main player
         window.currentSongIndex = songIndex;
         
-        // Use the same loadSong function with necessary parameters
         const folderName = song.title.replace(/\s+/g, '-').replace(/'/g, '');
         const fileName = `${song.title.replace(/\s+/g, '-').replace(/'/g, '')}_${song.artist.replace(/\s+/g, '-').replace(/'/g, '')}.mp3`;
         const basePath = `assets/music/${folderName}`;
         
-        // Update UI elements
         document.getElementById('song-title').textContent = song.title;
         document.getElementById('song-artist').textContent = song.artist;
         audioPlayer.src = `${basePath}/${fileName}`;
@@ -991,13 +937,11 @@ function playSongFromLibrary(song) {
                 if (src) document.getElementById('cover-art').src = src;
             });
         
-        // Play the selected song
         audioPlayer.play().then(() => {
             document.getElementById('play-btn').innerHTML = '<i class="fas fa-pause"></i>';
             document.getElementById('play-btn').title = "Pause";
             window.isPlaying = true;
             
-            // Update active song in list
             const songItems = document.querySelectorAll('.song-item');
             songItems.forEach(item => {
                 item.classList.remove('active');
@@ -1005,7 +949,6 @@ function playSongFromLibrary(song) {
                 playButton.innerHTML = '<i class="fas fa-play"></i>';
             });
             
-            // Find the clicked song item and mark as active
             songItems.forEach(item => {
                 const titleEl = item.querySelector('.song-item-title');
                 if (titleEl.textContent === song.title) {
@@ -1019,12 +962,10 @@ function playSongFromLibrary(song) {
             console.error("Error playing audio:", error);
         });
         
-        // Hide the modal
         window.songListModal.classList.remove('visible');
     }
 }
 
-// Add event listeners for volume handle touch events
 playBtn.addEventListener('click', togglePlay);
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
