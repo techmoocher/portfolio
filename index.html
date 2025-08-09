@@ -16,6 +16,27 @@
         </div>
     </div>
 
+    <!-- <div id="calendar-widget">
+        <div class="calendar-header">
+            <button id="cal-prev" title="Previous Month">&lt;</button>
+            <span id="cal-month-year"></span>
+            <button id="cal-next" title="Next Month">&gt;</button>
+        </div>
+        <div class="calendar-body">
+            <div class="calendar-weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div class="calendar-dates">
+                </div>
+        </div>
+    </div> -->
+
     <!-- Music Player Widget -->
     <div class="music-player">
         <div class="music-player-content">
@@ -70,22 +91,21 @@
             <img src="assets/images/miscellaneous.svg" alt="Miscellaneous" class="icon-image">
             <div class="icon-text">Miscellaneous</div>
         </div>
-        <div class="app-icon" id="gallery-icon" title="showcase of my photos">
+        <!-- <div class="app-icon" id="gallery-icon" title="showcase of my photos">
             <img src="assets/images/gallery.svg" alt="Gallery" class="icon-image">
             <div class="icon-text">Gallery</div>
-        </div>
-        
+        </div> -->
     </div>
 
     <div class="night-sky">
         <div class="stars"></div>
-        <div class="moon">
+        <!-- <div class="moon">
             <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="SVGRepo_iconCarrier"> 
                     <path opacity="0.9" d="M12 22C17.5228 22 22 17.5228 22 12C22 11.5373 21.3065 11.4608 21.0672 11.8568C19.9289 13.7406 17.8615 15 15.5 15C11.9101 15 9 12.0899 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#FFE87C"/> 
                 </g>
             </svg>
-        </div>
+        </div> -->
     </div>
 
     <!-- Widget board -->
@@ -147,9 +167,9 @@
                         <pre><code><span class="keyword">function</span> <span class="function-name">techmoocher</span>() {
   <span class="keyword">const</span> <span class="variable">info</span> = [
     <span class="string">"👨‍💻 <strong>Name:</strong> Phuc (Benjamin) Nguyen"</span>,
-    <span class="string">"🤵 <strong>Title:</strong> Student @ VNU-HCM High School for the Gifted"</span>,
+    <span class="string">"🤵 <strong>Title:</strong> Student @ VNUHCM High School for the Gifted"</span>,
     <span class="string">"💖 <strong>Hobbies:</strong> Running 🏃‍♂️, Cycling 🚴‍♂️, Piano 🎹, Coding 👨‍💻"</span>,
-    <span class="string">"🛠 <strong>Skills:</strong> Python, C++, Java, HTML, CSS, JavaScript and more!"</span>,
+    <span class="string">"🛠 <strong>Skills:</strong> Python, C++, Java, HTML, CSS, Docker, and more!"</span>,
     <span class="string">'🔗 <strong>Find me at:</strong> <a href="https://github.com/techmoocher/" target="_blank">@techmoocher</a>'</span>,
   ];
 }</code></pre>
@@ -171,6 +191,82 @@
                     <button class="carousel-nav next-btn">&gt;</button>
                 </div>
                 <div class="carousel-caption"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="gallery-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="modal-title">Gallery</h2>
+            <div class="folder-grid">
+                <div class="folder-item" data-folder="camp">
+                    <img src="assets/images/folder.svg" alt="Folder" class="folder-icon">
+                    <div class="folder-name">🏕️🌲</div>
+                </div>
+                <div class="folder-item" data-folder="church">
+                    <img src="assets/images/folder.svg" alt="Folder" class="folder-icon">
+                    <div class="folder-name">⛪✝️</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="projects-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 class="modal-title">Projects</h2>
+
+            <!-- Your Pet -->
+            <div class="project-tiles">
+                <a href="https://github.com/techmoocher/your-pet" target="_blank">
+                <div class="project-tile">
+                    <div class="project-image">
+                        <img src="assets/images/projects/techmoocher.png" alt="Your Pet">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Your Pet</h3>
+                        <p class="project-description">A little desktop pet for a little relaxation in your hard days.</p>
+                        <a href="https://github.com/techmoocher/your-pet" class="project-github" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                </a>
+                
+                <!-- Homelab -->
+                <a href="https://github.com/techmoocher/homelab" target="_blank">
+                <div class="project-tile">
+                    <div class="project-image">
+                        <img src="assets/images/projects/homelab.jpg" alt="Project 2">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Homelab</h3>
+                        <p class="project-description">A home server for family and personal daily use.</p>
+                        <a href="https://github.com/techmoocher/homelab" class="project-github" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                </a>
+
+                <!-- Will you date me? -->
+                <a href="https://techmoocher.github.io/will-you-date-me" target="_blank">
+                <div class="project-tile">
+                    <div class="project-image">
+                        <img src="assets/images/projects/ask-her-out.PNG" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Will you date me?</h3>
+                        <p class="project-description">My first-ever project with HTML/CSS and JS.<br><i>I actually succeeded in asking a girl out on a date :)</i></p>
+                        <a href="https://github.com/techmoocher/will-you-date-me" class="project-github" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                </a>
+
+                <!-- TuneHub -->
             </div>
         </div>
     </div>
