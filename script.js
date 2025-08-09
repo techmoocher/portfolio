@@ -17,6 +17,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectsModal = document.getElementById('projects-modal');
     
     setupModal(bioIcon, bioModal);
+
+    const showPhotoBtn = document.getElementById('show-photo-btn');
+    const photoModal = document.getElementById('photo-modal');
+    if (showPhotoBtn && photoModal) {
+        showPhotoBtn.addEventListener('click', () => {
+            photoModal.classList.add('visible');
+        });
+        const closeBtn = photoModal.querySelector('.close-button');
+        closeBtn.addEventListener('click', () => {
+            photoModal.classList.remove('visible');
+        });
+        photoModal.addEventListener('click', (event) => {
+            if (event.target === photoModal) {
+                photoModal.classList.remove('visible');
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && photoModal.classList.contains('visible')) {
+                photoModal.classList.remove('visible');
+            }
+        });
+    }
+
     setupModal(miscIcon, miscModal);
     // setupModal(galleryIcon, galleryModal);
     setupModal(projectsIcon, projectsModal);
