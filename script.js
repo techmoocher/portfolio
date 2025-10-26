@@ -1140,7 +1140,7 @@ function applyDevicePreference(device) {
     }
 
     hideDeviceSelectionModal();
-    const launchMessage = normalizedDevice === 'desktop' ? 'Launching desktop experience...' : 'Launching mobile experience...';
+    const launchMessage = normalizedDevice === 'desktop' ? 'Launching...' : 'Launching...';
     showLaunchOverlay(launchMessage);
 }
 
