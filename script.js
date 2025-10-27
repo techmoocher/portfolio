@@ -15,6 +15,141 @@ let devicePreference = null;
 let launchOverlayTimeout = null;
 let launchOverlayHideTimeout = null;
 
+const projectsData = {
+    "homelab": {
+        title: "Homelab",
+        overview: "Self-hosted infrastructure cluster powering shared services for my family.",
+        description: "I designed the homelab to replace rented SaaS tools with Dockerized services running on energy-efficient hardware. Automation keeps apps updated while observability surfaces issues before they impact anyone.",
+        liveUrl: "https://github.com/techmoocher/homelab",
+        githubUrl: "https://github.com/techmoocher/homelab",
+        images: [
+            { src: "assets/images/projects/homelab.jpg", alt: "Homelab hardware and networking gear" }
+        ],
+        features: [
+            "Docker Compose stacks orchestrate media, storage, and collaboration apps with one command.",
+            "Traefik reverse proxy secures services behind automatic HTTPS and identity-aware access.",
+            "Grafana and Prometheus dashboards track uptime, resource usage, and backup health."
+        ],
+        challenges: [
+            {
+                title: "Reliable uptime on hobby hardware",
+                challenge: "Running 24/7 services on single-board computers and recycled laptops risked thermal throttling and drive failures.",
+                solution: "Added health checks, smartctl monitoring, and nightly rsync snapshots to a ZFS pool so components can be swapped without data loss."
+            },
+            {
+                title: "Private access without exposing ports",
+                challenge: "Residential internet lacks static IPs and makes port forwarding unreliable.",
+                solution: "Tunneled ingress through Cloudflare and automated dynamic DNS updates, keeping everything reachable without opening raw ports."
+            }
+        ],
+        impacts: [
+            "Hosts photo backups, password vaults, and media streaming for the family in one place.",
+            "Eliminated recurring SaaS fees for five subscription services.",
+            "Provided a safe sandbox for experimenting with DevOps tooling and incident response lessons."
+        ],
+        techStack: ["Docker", "Traefik", "Cloudflare Tunnel", "Grafana", "Prometheus", "ZFS", "Ansible"]
+    },
+    "your-pet": {
+        title: "Your Pet",
+        overview: "A desktop companion that reacts to your input and brings micro-breaks into long coding sessions.",
+        description: "The project focuses on playful animations and lightweight interactions so classmates can keep a friendly, unobtrusive pet on their screens. I refined sprite timing and mood logic so the character feels responsive without stealing attention.",
+        liveUrl: "https://github.com/techmoocher/your-pet",
+        githubUrl: "https://github.com/techmoocher/your-pet",
+        images: [
+            { src: "assets/images/projects/techmoocher.png", alt: "Your Pet mascot" }
+        ],
+        features: [
+            "Animation engine with idle, sleep, surprise, and celebration states.",
+            "Customizable hotkeys to feed, move, or calm the companion from anywhere on the desktop.",
+            "Mood tracker that nudges users to stretch or hydrate after long focus streaks."
+        ],
+        challenges: [
+            {
+                title: "Smooth animation without burning CPU",
+                challenge: "Early prototypes relied on dense interval timers that spiked CPU usage during long running sessions.",
+                solution: "Rebuilt the loop with requestAnimationFrame-style timing utilities so frames align with the display refresh and idle gracefully."
+            },
+            {
+                title: "Keeping the pet out of the way",
+                challenge: "Users wanted a visible companion but not one that blocked UI components or grabbed focus unexpectedly.",
+                solution: "Added smart positioning rules, transparency controls, and pointer-through regions that keep clicks on the underlying window."
+            }
+        ],
+        impacts: [
+            "Gave friends an easy way to lighten intense study sessions with playful feedback.",
+            "Sparked design discussions about balancing delight and productivity in desktop tools.",
+            "Showcased polish in presentation demos thanks to the character driven UI."
+        ],
+        techStack: ["JavaScript", "HTML Canvas", "Sprite Sheets", "Electron"]
+    },
+    "will-you-date-me": {
+        title: "Will you date me?",
+        overview: "Interactive microsite that playfully invited my crush on a date while teaching me front-end fundamentals.",
+        description: "This was my first HTML/CSS/JS build, so I leaned into fun animations and charming copy. The page guides visitors through a series of prompts, gradually revealing the invite with delightful micro-interactions.",
+        liveUrl: "https://techmoocher.github.io/will-you-date-me",
+        githubUrl: "https://github.com/techmoocher/will-you-date-me",
+        images: [
+            { src: "assets/images/projects/ask-her-out.PNG", alt: "Will you date me landing page screenshot" }
+        ],
+        features: [
+            "Responsive layout that adapts the invitation experience from phones to desktops.",
+            "Playful button animations that encourage the user to say yes (and make it hard to say no).",
+            "Custom illustration and typography inspired by handwritten notes."
+        ],
+        challenges: [
+            {
+                title: "Making the experience feel personal",
+                challenge: "Static text felt cold and generic for something as personal as an invitation.",
+                solution: "Scripted branching copy, emoji, and subtle CSS animations so every interaction feels handcrafted."
+            },
+            {
+                title: "Keeping the UI responsive for the big reveal",
+                challenge: "My first attempts used fixed positioning that broke on small screens.",
+                solution: "Refactored to flexbox and relative units, then tested across devices until the layout held up."
+            }
+        ],
+        impacts: [
+            "Successfully asked someone out and captured the story in code.",
+            "Kick-started my love for front-end development with immediate feedback.",
+            "Motivated friends to learn the basics of HTML/CSS to build their own fun projects."
+        ],
+        techStack: ["HTML", "CSS", "JavaScript", "Animate.css"]
+    },
+    "chuoi-man-coi": {
+        title: "Chuoi Man Coi",
+        overview: "Interactive rosary web app that guides students through each mystery with visuals, audio, and progress cues.",
+        description: "Built for my Binh Hung church students, the app combines catechesis with modern UX. Learners can track prayers, read reflections, and follow along even if they are new to the rosary.",
+        liveUrl: "https://chuoi-man-coi.techmoocher.com",
+        githubUrl: "https://github.com/techmoocher/Chuoi-Man-Coi",
+        images: [
+            { src: "assets/images/projects/Chuoi-Man-Coi.png", alt: "Chuoi Man Coi prayer screen" }
+        ],
+        features: [
+            "Step-by-step rosary guide with visuals, current mystery context, and gentle audio cues.",
+            "Localized content for students with notes, prayers, and progress tracking.",
+            "Mobile-first interface so catechists can lead prayers directly from their phones."
+        ],
+        challenges: [
+            {
+                title: "Designing for all ages",
+                challenge: "Young students needed simple affordances while catechists requested deeper explanations.",
+                solution: "Introduced dual layers—concise prompts on the main screen with expandable cards for additional context."
+            },
+            {
+                title: "Reliability in low-connectivity environments",
+                challenge: "Parish halls do not always have strong Wi-Fi, so the app had to degrade gracefully.",
+                solution: "Optimized assets, cached the liturgical content, and preloaded audio snippets so sessions continue offline."
+            }
+        ],
+        impacts: [
+            "Helped students memorize and appreciate the rosary structure faster.",
+            "Enabled catechists to run interactive sessions without flipping through booklets.",
+            "Sparked interest from nearby parishes that now reuse the content."
+        ],
+        techStack: ["Vue", "Tailwind CSS", "Firebase", "PWA", "IndexedDB"]
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     createStars();
     createShootingStars();
@@ -64,6 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (miscIcon) {
         miscIcon.addEventListener('click', initImageCarousel);
     }
+
+    initializeProjectTiles();
 
     document.querySelectorAll('.folder-item').forEach(folder => {
         folder.addEventListener('click', () => {
@@ -184,6 +321,22 @@ function setupModal(iconElement, modalElement) {
         if (event.key === 'Escape' && modalElement.classList.contains('visible')) {
             hideModal();
         }
+    });
+}
+
+function initializeProjectTiles() {
+    const tiles = document.querySelectorAll('.project-tile');
+    tiles.forEach(tile => {
+        tile.addEventListener('click', () => {
+            const projectId = tile.dataset.projectId;
+            openProjectDetails(projectId);
+        });
+
+        tile.querySelectorAll('.project-action').forEach(action => {
+            action.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        });
     });
 }
 
@@ -1140,7 +1293,7 @@ function applyDevicePreference(device) {
     }
 
     hideDeviceSelectionModal();
-    const launchMessage = normalizedDevice === 'desktop' ? 'Launching...' : 'Launching...';
+    const launchMessage = normalizedDevice === 'desktop' ? 'Launching desktop experience...' : 'Launching mobile experience...';
     showLaunchOverlay(launchMessage);
 }
 
@@ -1288,6 +1441,180 @@ function hideLaunchOverlay(immediate = false) {
         overlay.setAttribute('hidden', '');
         launchOverlayHideTimeout = null;
     }, 500);
+}
+
+function openProjectDetails(projectId) {
+    if (!projectId) {
+        console.warn('Project id missing for detail view.');
+        return;
+    }
+
+    const data = projectsData[projectId];
+    if (!data) {
+        console.warn(`Project data not found for ${projectId}`);
+        return;
+    }
+
+    const existingOverlay = document.querySelector('.project-detail-overlay');
+    if (existingOverlay) {
+        existingOverlay.remove();
+    }
+
+    const overlay = document.createElement('div');
+    overlay.classList.add('modal-overlay', 'project-detail-overlay', 'visible');
+
+    const detailTitleId = `project-detail-title-${projectId}`;
+    const detailOverviewId = data.overview ? `project-detail-overview-${projectId}` : '';
+    const detailDescriptionId = data.description ? `project-detail-description-${projectId}` : '';
+    const describedByIds = [detailOverviewId, detailDescriptionId].filter(Boolean).join(' ');
+    const ariaDescribedByAttr = describedByIds ? ` aria-describedby="${describedByIds}"` : '';
+
+    const overviewMarkup = data.overview
+        ? `<p class="project-detail-overview" id="${detailOverviewId}">${data.overview}</p>`
+        : '';
+
+    const galleryMarkup = Array.isArray(data.images) && data.images.length > 0
+        ? `
+            <section class="project-detail-section">
+                <h3>Images</h3>
+                <div class="project-detail-gallery">
+                    ${data.images.map(image => `
+                        <img src="${image.src}" alt="${image.alt || data.title} image">
+                    `).join('')}
+                </div>
+            </section>
+        `
+        : '';
+
+    const descriptionMarkup = data.description
+        ? `
+            <section class="project-detail-section">
+                <h3>Project Description</h3>
+                <p id="${detailDescriptionId}">${data.description}</p>
+            </section>
+        `
+        : '';
+
+    const featuresMarkup = Array.isArray(data.features) && data.features.length > 0
+        ? `
+            <section class="project-detail-section">
+                <h3>Key Features</h3>
+                <ul>
+                    ${data.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+            </section>
+        `
+        : '';
+
+    const challengesMarkup = Array.isArray(data.challenges) && data.challenges.length > 0
+        ? `
+            <section class="project-detail-section">
+                <h3>Challenges &amp; Solutions</h3>
+                <div class="project-detail-challenges">
+                    ${data.challenges.map(challenge => `
+                        <div class="project-detail-challenge">
+                            <h4>${challenge.title}</h4>
+                            <p><strong>Challenge:</strong> ${challenge.challenge}</p>
+                            <p><strong>Solution:</strong> ${challenge.solution}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+        `
+        : '';
+
+    const impactsMarkup = Array.isArray(data.impacts) && data.impacts.length > 0
+        ? `
+            <section class="project-detail-section">
+                <h3>Impacts &amp; Results</h3>
+                <ul>
+                    ${data.impacts.map(impact => `<li>${impact}</li>`).join('')}
+                </ul>
+            </section>
+        `
+        : '';
+
+    const techStackMarkup = Array.isArray(data.techStack) && data.techStack.length > 0
+        ? `
+            <section class="project-detail-section">
+                <h3>Technology Stack</h3>
+                <div class="project-detail-tags">
+                    ${data.techStack.map(tool => `<span class="project-detail-tag">${tool}</span>`).join('')}
+                </div>
+            </section>
+        `
+        : '';
+
+    const detailSections = [
+        galleryMarkup,
+        descriptionMarkup,
+        featuresMarkup,
+        challengesMarkup,
+        impactsMarkup,
+        techStackMarkup
+    ].filter(Boolean).join('');
+
+    const liveAction = data.liveUrl
+        ? `<a href="${data.liveUrl}" class="project-action project-visit" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span>Visit Site</span></a>`
+        : '';
+
+    const githubAction = data.githubUrl
+        ? `<a href="${data.githubUrl}" class="project-action project-github" target="_blank" rel="noopener"><i class="fab fa-github"></i><span>View Repo</span></a>`
+        : '';
+
+    overlay.innerHTML = `
+        <div class="modal-content project-detail-content" role="dialog" aria-modal="true" aria-labelledby="${detailTitleId}"${ariaDescribedByAttr} tabindex="-1">
+            <span class="close-button" aria-label="Close project details">&times;</span>
+            <div class="project-detail-header">
+                <div class="project-detail-heading">
+                    <h2 class="project-detail-title" id="${detailTitleId}">${data.title}</h2>
+                    ${overviewMarkup}
+                </div>
+                <div class="project-detail-actions">
+                    ${liveAction || ''}
+                    ${githubAction || ''}
+                </div>
+            </div>
+            <div class="project-detail-body">
+                ${detailSections}
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const closeButton = overlay.querySelector('.close-button');
+    const dialogContent = overlay.querySelector('.project-detail-content');
+
+    const closeOverlay = () => {
+        overlay.classList.remove('visible');
+        document.removeEventListener('keydown', escHandler);
+        setTimeout(() => {
+            overlay.remove();
+        }, 250);
+    };
+
+    const escHandler = (event) => {
+        if (event.key === 'Escape') {
+            closeOverlay();
+        }
+    };
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeOverlay);
+    }
+
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+            closeOverlay();
+        }
+    });
+
+    document.addEventListener('keydown', escHandler);
+
+    if (dialogContent) {
+        dialogContent.focus({ preventScroll: false });
+    }
 }
 
 window.resetDevicePreference = function() {
