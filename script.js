@@ -322,10 +322,8 @@ function setupModal(iconElement, modalElement) {
     
     const escHandler = (event) => {
         if (event.key === 'Escape' && modalElement.classList.contains('visible')) {
-            // Check if there's a project detail overlay open
             const projectDetailOverlay = document.querySelector('.project-detail-overlay.visible');
             if (projectDetailOverlay) {
-                // Don't close the projects modal, let the detail overlay handle it
                 return;
             }
             hideModal();
@@ -746,7 +744,7 @@ function initMusicPlayer() {
         tryLoadImage(`${basePath}/thumbnail.jpg`)
             .catch(() => tryLoadImage(`${basePath}/thumbnail.png`))
             .catch(() => tryLoadImage(`${basePath}/thumbnail.jpeg`))
-            .catch(() => coverArt.src = 'assets/images/default-cover.jpg')
+            .catch(() => coverArt.src = 'assets/images/techmoocher.png')
             .then(src => {
                 if (src) coverArt.src = src;
             });
@@ -1080,7 +1078,7 @@ function showSongList() {
         
         const thumbnail = document.createElement('img');
         thumbnail.classList.add('song-thumbnail');
-        thumbnail.src = 'assets/images/default-cover.jpg';
+        thumbnail.src = 'assets/images/techmoocher.png';
         
         window.tryLoadImage(`${basePath}/thumbnail.jpg`)
             .catch(() => window.tryLoadImage(`${basePath}/thumbnail.png`))
@@ -1170,7 +1168,7 @@ function playSongFromLibrary(song) {
         window.tryLoadImage(`${basePath}/thumbnail.jpg`)
             .catch(() => window.tryLoadImage(`${basePath}/thumbnail.png`))
             .catch(() => window.tryLoadImage(`${basePath}/thumbnail.jpeg`))
-            .catch(() => document.getElementById('cover-art').src = 'assets/images/default-cover.jpg')
+            .catch(() => document.getElementById('cover-art').src = 'assets/images/techmoocher.png')
             .then(src => {
                 if (src) document.getElementById('cover-art').src = src;
             });
@@ -1260,23 +1258,26 @@ function handleSongListKeydown(event) {
 
 function initializeDeviceSelection() {
     const deviceModal = document.getElementById('device-selection-modal');
-    const defaultDevice = window.innerWidth <= 820 ? 'mobile' : 'desktop';
 
     devicePreference = null;
     document.body.removeAttribute('data-device-mode');
     hideLaunchOverlay(true);
     disableMusicFeature();
-    highlightDeviceOption(defaultDevice);
 
     if (!deviceModal) {
-        applyDevicePreference(defaultDevice);
+        console.error('Device selection modal not found!');
         return;
     }
 
+    // Don't highlight anything - let user choose without any suggestion
+    const options = deviceModal.querySelectorAll('.device-option');
+    options.forEach(option => {
+        option.classList.remove('active');
+    });
+
     if (!deviceModal.dataset.bound) {
-        const options = deviceModal.querySelectorAll('.device-option');
         options.forEach(option => {
-            option.addEventListener('click', () => {
+            option.addEventListener('click', (event) => {
                 const device = option.dataset.device || 'desktop';
                 applyDevicePreference(device);
             });
@@ -1284,7 +1285,15 @@ function initializeDeviceSelection() {
         deviceModal.dataset.bound = 'true';
     }
 
+    // Force visibility with inline styles to override any CSS issues
+    deviceModal.style.display = 'flex';
+    deviceModal.style.opacity = '1';
+    deviceModal.style.pointerEvents = 'auto';
+    
     deviceModal.classList.add('visible');
+    
+    console.log('Device modal initialized and should be visible');
+    console.log('Modal parent:', deviceModal.parentElement?.tagName, deviceModal.parentElement?.id);
 }
 
 function applyDevicePreference(device) {
@@ -1382,6 +1391,10 @@ function hideDeviceSelectionModal() {
     const deviceModal = document.getElementById('device-selection-modal');
     if (deviceModal) {
         deviceModal.classList.remove('visible');
+        // Remove inline styles to allow CSS to take over
+        deviceModal.style.display = '';
+        deviceModal.style.opacity = '';
+        deviceModal.style.pointerEvents = '';
     }
 }
 
