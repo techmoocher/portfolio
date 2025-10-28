@@ -23,7 +23,7 @@ const projectsData = {
         liveUrl: "https://github.com/techmoocher/homelab",
         githubUrl: "https://github.com/techmoocher/homelab",
         images: [
-            { src: "assets/images/projects/homelab.jpg", alt: "Homelab hardware and networking gear" }
+            { src: "assets/images/projects/homelab/homelab.jpg", alt: "Homelab hardware and networking gear" }
         ],
         features: [
             "Docker Compose stacks orchestrate media, storage, and collaboration apps with one command.",
@@ -47,8 +47,9 @@ const projectsData = {
             "Eliminated recurring SaaS fees for five subscription services.",
             "Provided a safe sandbox for experimenting with DevOps tooling and incident response lessons."
         ],
-        techStack: ["Docker", "Traefik", "Cloudflare Tunnel", "Grafana", "Prometheus", "ZFS", "Ansible"]
+        techStack: ["Proxmox", "Docker", "Cloudflare Tunnel", "Grafana", "Prometheus", "Python", "Bash", "Torrent"]
     },
+
     "your-pet": {
         title: "Your Pet",
         overview: "A desktop companion that reacts to your input and brings micro-breaks into long coding sessions.",
@@ -56,7 +57,7 @@ const projectsData = {
         liveUrl: "https://github.com/techmoocher/your-pet",
         githubUrl: "https://github.com/techmoocher/your-pet",
         images: [
-            { src: "assets/images/projects/techmoocher.png", alt: "Your Pet mascot" }
+            { src: "assets/images/projects/your-pet/techmoocher.png", alt: "Your Pet mascot" }
         ],
         features: [
             "Animation engine with idle, sleep, surprise, and celebration states.",
@@ -80,16 +81,17 @@ const projectsData = {
             "Sparked design discussions about balancing delight and productivity in desktop tools.",
             "Showcased polish in presentation demos thanks to the character driven UI."
         ],
-        techStack: ["JavaScript", "HTML Canvas", "Sprite Sheets", "Electron"]
+        techStack: ["Python", "PyQt6", "Gemini API"]
     },
+
     "will-you-date-me": {
         title: "Will you date me?",
         overview: "Interactive microsite that playfully invited my crush on a date while teaching me front-end fundamentals.",
         description: "This was my first HTML/CSS/JS build, so I leaned into fun animations and charming copy. The page guides visitors through a series of prompts, gradually revealing the invite with delightful micro-interactions.",
-        liveUrl: "https://techmoocher.github.io/will-you-date-me",
+        liveUrl: "https://for-her.techmoocher.com/will-you-date-me",
         githubUrl: "https://github.com/techmoocher/will-you-date-me",
         images: [
-            { src: "assets/images/projects/ask-her-out.PNG", alt: "Will you date me landing page screenshot" }
+            { src: "assets/images/projects/will-you-date-me/ask-her-out.PNG", alt: "Will you date me landing page screenshot" }
         ],
         features: [
             "Responsive layout that adapts the invitation experience from phones to desktops.",
@@ -113,8 +115,9 @@ const projectsData = {
             "Kick-started my love for front-end development with immediate feedback.",
             "Motivated friends to learn the basics of HTML/CSS to build their own fun projects."
         ],
-        techStack: ["HTML", "CSS", "JavaScript", "Animate.css"]
+        techStack: ["HTML", "CSS", "JavaScript", "EmailJS"]
     },
+
     "chuoi-man-coi": {
         title: "Chuoi Man Coi",
         overview: "Interactive rosary web app that guides students through each mystery with visuals, audio, and progress cues.",
@@ -122,7 +125,7 @@ const projectsData = {
         liveUrl: "https://chuoi-man-coi.techmoocher.com",
         githubUrl: "https://github.com/techmoocher/Chuoi-Man-Coi",
         images: [
-            { src: "assets/images/projects/Chuoi-Man-Coi.png", alt: "Chuoi Man Coi prayer screen" }
+            { src: "assets/images/projects/Chuoi-Man-Coi/Chuoi-Man-Coi.png", alt: "Chuoi Man Coi prayer screen" }
         ],
         features: [
             "Step-by-step rosary guide with visuals, current mystery context, and gentle audio cues.",
@@ -146,7 +149,7 @@ const projectsData = {
             "Enabled catechists to run interactive sessions without flipping through booklets.",
             "Sparked interest from nearby parishes that now reuse the content."
         ],
-        techStack: ["Vue", "Tailwind CSS", "Firebase", "PWA", "IndexedDB"]
+        techStack: ["HTML", "CSS", "JavaScript"]
     }
 };
 
@@ -317,11 +320,19 @@ function setupModal(iconElement, modalElement) {
         }
     });
     
-    document.addEventListener('keydown', (event) => {
+    const escHandler = (event) => {
         if (event.key === 'Escape' && modalElement.classList.contains('visible')) {
+            // Check if there's a project detail overlay open
+            const projectDetailOverlay = document.querySelector('.project-detail-overlay.visible');
+            if (projectDetailOverlay) {
+                // Don't close the projects modal, let the detail overlay handle it
+                return;
+            }
             hideModal();
         }
-    });
+    };
+    
+    document.addEventListener('keydown', escHandler);
 }
 
 function initializeProjectTiles() {
@@ -716,13 +727,10 @@ function initMusicPlayer() {
         
         shuffleBtn.classList.add('active');
         
-        audioPlayer.play().then(() => {
-            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            playBtn.title = "Pause";
-            isPlaying = true;
-        }).catch(error => {
-            console.log("Autoplay prevented:", error);
-        });
+        // Don't autoplay - user must click play button
+        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        playBtn.title = "Play";
+        isPlaying = false;
     }
     
     function loadSong(song) {
@@ -1596,6 +1604,7 @@ function openProjectDetails(projectId) {
 
     const escHandler = (event) => {
         if (event.key === 'Escape') {
+            event.stopPropagation();
             closeOverlay();
         }
     };

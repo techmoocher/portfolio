@@ -347,21 +347,23 @@ body.music-disabled #music-widget {
 }
 
 .modal-content::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 .modal-content::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
+    margin: 4px 0;
 }
 
 .modal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.18);
+    background: linear-gradient(180deg, rgba(108, 99, 255, 0.6), rgba(96, 219, 211, 0.6));
     border-radius: 10px;
+    border: 2px solid rgba(30, 27, 46, 0.3);
 }
 
 .modal-content::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.28);
+    background: linear-gradient(180deg, rgba(108, 99, 255, 0.8), rgba(96, 219, 211, 0.8));
 }
 
 #projects-modal .modal-content,
@@ -377,16 +379,23 @@ body.music-disabled #music-widget {
 }
 
 #projects-modal .project-tiles::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
+}
+
+#projects-modal .project-tiles::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin: 4px 0;
 }
 
 #projects-modal .project-tiles::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(108, 99, 255, 0.6), rgba(96, 219, 211, 0.6));
+    border-radius: 8px;
+    border: 2px solid rgba(30, 27, 46, 0.3);
 }
 
 #projects-modal .project-tiles::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
+    background: linear-gradient(180deg, rgba(108, 99, 255, 0.8), rgba(96, 219, 211, 0.8));
 }
 
 #miscellaneous-modal .modal-content {
@@ -830,8 +839,8 @@ body.music-disabled #music-widget {
 
 /* Project Tiles Styles */
 .project-tiles {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 25px;
     padding: 10px;
 }
@@ -844,7 +853,7 @@ body.music-disabled #music-widget {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    min-height: 180px;
+    height: 200px;
     cursor: pointer;
     position: relative;
 }
@@ -874,8 +883,8 @@ body.music-disabled #music-widget {
 }
 
 .project-image {
-    width: 220px;
-    min-width: 220px;
+    width: 280px;
+    min-width: 280px;
     height: 100%;
     overflow: hidden;
     position: relative;
@@ -894,6 +903,7 @@ body.music-disabled #music-widget {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     filter: brightness(0.9) saturate(1.1);
 }
@@ -940,7 +950,7 @@ body.music-disabled #music-widget {
     justify-content: center;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 10px;
     font-size: 1.05rem;
     text-decoration: none;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1050,6 +1060,7 @@ body.music-disabled #music-widget {
     align-items: flex-end;
     gap: 0.75rem;
     min-width: 170px;
+    margin-top: 2.5rem;
 }
 
 .project-detail-actions .project-action {
@@ -1167,12 +1178,13 @@ body.music-disabled #music-widget {
     
     .project-tile {
         flex-direction: column;
-        min-height: 0;
+        height: auto;
     }
     
     .project-image {
         width: 100%;
-        height: 160px;
+        height: 200px;
+        min-width: 100%;
     }
     
     .project-info {
@@ -1243,8 +1255,8 @@ body.music-disabled #music-widget {
 }
 
 .carousel-item img {
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     border-radius: 8px;
 }
@@ -1843,21 +1855,23 @@ body.music-disabled #music-widget {
 }
 
 .song-list-wrapper::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 .song-list-wrapper::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 3px;
+    border-radius: 8px;
+    margin: 4px 0;
 }
 
 .song-list-wrapper::-webkit-scrollbar-thumb {
-    background: rgba(108, 99, 255, 0.5);
-    border-radius: 3px;
+    background: linear-gradient(180deg, rgba(108, 99, 255, 0.6), rgba(96, 219, 211, 0.6));
+    border-radius: 8px;
+    border: 2px solid rgba(30, 27, 46, 0.3);
 }
 
 .song-list-wrapper::-webkit-scrollbar-thumb:hover {
-    background: rgba(108, 99, 255, 0.7);
+    background: linear-gradient(180deg, rgba(108, 99, 255, 0.8), rgba(96, 219, 211, 0.8));
 }
 
 .song-list {
