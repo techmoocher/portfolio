@@ -50,14 +50,14 @@ const projectsData = {
         techStack: ["Proxmox", "Docker", "Cloudflare Tunnel", "Grafana", "Prometheus", "Python", "Bash", "Torrent"]
     },
 
-    "your-pet": {
+    "Karu-the-Fox": {
         title: "Your Pet",
         overview: "A desktop companion that reacts to your input and brings micro-breaks into long coding sessions.",
         description: "The project focuses on playful animations and lightweight interactions so classmates can keep a friendly, unobtrusive pet on their screens. I refined sprite timing and mood logic so the character feels responsive without stealing attention.",
-        liveUrl: "https://github.com/techmoocher/your-pet",
-        githubUrl: "https://github.com/techmoocher/your-pet",
+        liveUrl: "https://www.youtube.com/watch?v=LDVFWf0XFPM",
+        githubUrl: "https://github.com/techmoocher/Karu-the-Fox",
         images: [
-            { src: "assets/images/projects/your-pet/techmoocher.png", alt: "Your Pet mascot" }
+            { src: "assets/images/projects/Karu-the-Fox/techmoocher.png", alt: "Your Pet mascot" }
         ],
         features: [
             "Animation engine with idle, sleep, surprise, and celebration states.",
@@ -1391,7 +1391,6 @@ function hideDeviceSelectionModal() {
     const deviceModal = document.getElementById('device-selection-modal');
     if (deviceModal) {
         deviceModal.classList.remove('visible');
-        // Remove inline styles to allow CSS to take over
         deviceModal.style.display = '';
         deviceModal.style.opacity = '';
         deviceModal.style.pointerEvents = '';
