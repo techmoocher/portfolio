@@ -51,13 +51,13 @@ const projectsData = {
     },
 
     "Karu-the-Fox": {
-        title: "Your Pet",
-        overview: "A desktop companion that reacts to your input and brings micro-breaks into long coding sessions.",
+        title: "Karu the Fox",
+        overview: "An interactive desktop companion that brings micro-breaks into long and hardworking days.",
         description: "The project focuses on playful animations and lightweight interactions so classmates can keep a friendly, unobtrusive pet on their screens. I refined sprite timing and mood logic so the character feels responsive without stealing attention.",
         liveUrl: "https://www.youtube.com/watch?v=LDVFWf0XFPM",
         githubUrl: "https://github.com/techmoocher/Karu-the-Fox",
         images: [
-            { src: "assets/images/projects/Karu-the-Fox/techmoocher.png", alt: "Your Pet mascot" }
+            { src: "assets/images/projects/Karu-the-Fox/techmoocher.png", alt: "Karu the Fox mascot" }
         ],
         features: [
             "Animation engine with idle, sleep, surprise, and celebration states.",
@@ -1285,7 +1285,6 @@ function initializeDeviceSelection() {
         deviceModal.dataset.bound = 'true';
     }
 
-    // Force visibility with inline styles to override any CSS issues
     deviceModal.style.display = 'flex';
     deviceModal.style.opacity = '1';
     deviceModal.style.pointerEvents = 'auto';
