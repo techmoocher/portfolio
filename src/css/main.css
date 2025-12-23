@@ -13,7 +13,7 @@
 @import './base/background.css';
 
 @import './components/launch-overlay/launch.css';
-@import './components/device-selection.css';
+@import './components/launch-overlay/device-selection.css';
 
 @import './components/music/music-player.css';
 @import './components/music/song-list.css';
