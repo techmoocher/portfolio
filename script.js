@@ -61,7 +61,7 @@ const projectsData = {
         images: [
             { src: "assets/images/projects/Karu-the-Fox/techmoocher.png", alt: "Karu the Fox mascot" },
             { src: "assets/images/projects/Karu-the-Fox/preview-1.png", alt: "Karu the Fox demo (1)" },
-            { src: "assets/images/projects/Karu-the-Fox/preview-2.png", alt: "Karu the Fox demo (2)" }
+            { src: "assets/images/projects/Karu-the-Fox/preview-2.png", alt: "Karu the Fox demo (2)" },
         ],
         features: [
             "Animation engine with idle, sleep, surprise, and celebration states.",
