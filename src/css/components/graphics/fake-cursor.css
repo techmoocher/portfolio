@@ -1,0 +1,28 @@
+.fake-cursor {
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    background-image: url('../../../assets/images/cursor-click.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    transform-origin: top left;
+    transition: opacity 0.3s ease;
+    transform: translate(-10px, 15px);
+}
+
+.fake-cursor.visible {
+    opacity: 1;
+}
+
+.fake-cursor.clicking {
+    animation: cursor-click 0.3s ease-in-out;
+}
+
+@keyframes cursor-click {
+    0% { transform: translate(-10px, 15px) scale(1); }
+    50% { transform: translate(-10px, 15px) scale(0.9); }
+    100% { transform: translate(-10px, 15px) scale(1); }
+}

@@ -1,0 +1,81 @@
+.launch-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.launch-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.launch-card {
+    background: rgba(30, 27, 46, 0.92);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 2.4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    min-width: 220px;
+}
+
+.launch-spinner {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.18);
+    border-top-color: var(--secondary);
+    animation: launch-spin 1s linear infinite;
+}
+
+.launch-text {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+@keyframes launch-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .launch-overlay {
+        transition: none;
+    }
+
+    .launch-spinner {
+        animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .launch-card {
+        padding: 2rem 2.2rem;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .launch-card {
+        padding: 1.8rem 1.6rem;
+    }
+
+    .launch-spinner {
+        width: 44px;
+        height: 44px;
+        border-width: 3px;
+    }
+}

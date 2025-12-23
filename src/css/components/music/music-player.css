@@ -1,0 +1,215 @@
+.music-player {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 380px;
+    background-color: rgba(30, 27, 46, 0.85);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(108, 99, 255, 0.2);
+    z-index: 950;
+    transition: all 0.3s ease;
+}
+
+.music-player-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#cover-art {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.song-details {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+#song-title {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#song-artist {
+    color: #acacac;
+    font-size: 0.8rem;
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.progress-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.progress-bar {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #acacac;
+}
+
+.control-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: #f0f0f0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    color: rgba(240, 240, 240, 0.55);
+    transform: none;
+}
+
+.control-btn:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.control-btn:disabled:hover {
+    color: rgba(240, 240, 240, 0.55);
+    transform: none;
+}
+
+.control-btn.main-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.4);
+}
+
+.control-btn.main-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.6);
+    color: #fff;
+}
+
+.control-btn.active {
+    color: var(--primary);
+}
+
+.volume-container {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.control-btn#volume-btn:hover + .volume-container,
+.volume-container:hover,
+.volume-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.volume-slider {
+    position: relative;
+    width: 60px;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.volume-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+.volume-handle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    cursor: grab;
+    transition: transform 0.1s ease;
+}
+
+.volume-handle:active,
+.volume-handle.active {
+    cursor: grabbing;
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 2px 8px rgba(108, 99, 255, 0.6);
+}

@@ -1,0 +1,154 @@
+.night-sky {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.night-sky::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(1px 1px at 10px 10px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 30px 50px, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 50px 90px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 70px 130px, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 90px 170px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 110px 210px, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 130px 250px, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 150px 290px, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 300px 500px;
+    animation: dimTwinkle 8s infinite alternate;
+    z-index: 0;
+}
+
+.night-sky::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(1px 1px at 200px 20px, rgba(255, 232, 124, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 220px 60px, rgba(224, 195, 252, 0.3), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 240px 100px, rgba(255, 232, 124, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 260px 140px, rgba(224, 195, 252, 0.3), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 280px 180px, rgba(255, 232, 124, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 300px 220px, rgba(224, 195, 252, 0.3), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 320px 260px, rgba(255, 232, 124, 0.4), rgba(0, 0, 0, 0)),
+        radial-gradient(1px 1px at 340px 300px, rgba(224, 195, 252, 0.3), rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 400px 600px;
+    animation: dimTwinkle 12s infinite alternate-reverse;
+    z-index: 0;
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0, 0, 0, 0)),
+                      radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0, 0, 0, 0)),
+                      radial-gradient(2px 2px at 60px 110px, #ffffff, rgba(0, 0, 0, 0)),
+                      radial-gradient(2px 2px at 80px 150px, #ffffff, rgba(0, 0, 0, 0)),
+                      radial-gradient(2px 2px at 100px 190px, #ffffff, rgba(0, 0, 0, 0)),
+                      radial-gradient(2px 2px at 120px 230px, #ffffff, rgba(0, 0, 0, 0)),
+                      radial-gradient(2px 2px at 140px 270px, #ffffff, rgba(0, 0, 0, 0)),
+                      radial-gradient(2px 2px at 160px 310px, #ffffff, rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 400px;
+    animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.2; transform: scale(0.8); }
+}
+
+@keyframes dimTwinkle {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0.2; }
+}
+
+.star {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #ffffff;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.star.blink {
+    animation: blink 3s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.9; transform: scale(1.2); }
+}
+
+.star.small {
+    width: 1px;
+    height: 1px;
+}
+
+.star.medium {
+    width: 2px;
+    height: 2px;
+}
+
+.star.large {
+    width: 3px;
+    height: 3px;
+}
+
+.moon {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    width: 120px;
+    height: 120px;
+    filter: drop-shadow(0 0 20px rgba(255, 232, 124, 0.8));
+    animation: floatMoon 8s ease-in-out infinite;
+    z-index: 5;
+    border-radius: 50%;
+    box-shadow: 0 0 40px 8px rgba(255, 232, 124, 0.7);
+}
+
+@keyframes floatMoon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.shooting-star {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #ffffff 20%, #ffffff 60%, rgba(255, 255, 255, 0));
+    animation: shooting 3s linear infinite;
+    opacity: 0;
+    border-radius: 3px;
+    z-index: 5;
+    box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.7);
+}
+
+@keyframes shooting {
+    0% {
+        transform: translateX(0) translateY(0) rotate(35deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw)) translateY(calc(100vh)) rotate(35deg);
+        opacity: 0;
+    }
+}

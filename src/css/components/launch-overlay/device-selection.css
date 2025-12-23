@@ -1,0 +1,70 @@
+.device-selection-content {
+    width: min(90vw, 520px);
+    max-width: 520px;
+    text-align: center;
+    padding: 2.4rem 2rem;
+}
+
+.device-selection-subtitle {
+    color: #acacac;
+    font-size: 1rem;
+    margin-top: 0.6rem;
+}
+
+.device-options {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2.2rem;
+}
+
+.device-option {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    padding: 1.6rem 1.2rem;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 600;
+    gap: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.device-option img {
+    width: 72px;
+    height: 72px;
+}
+
+.device-option:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.device-option.active {
+    border-color: var(--secondary);
+    box-shadow: 0 0 18px rgba(96, 219, 211, 0.45);
+}
+
+.device-option:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .device-option {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .device-option img {
+        width: 60px;
+        height: 60px;
+    }
+}
