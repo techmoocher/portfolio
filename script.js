@@ -8,6 +8,7 @@
 
 ******/
 
+
 let isMusicEnabled = false;
 let musicPlayerInitialized = false;
 let songModalEventsBound = false;
