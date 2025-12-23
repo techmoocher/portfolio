@@ -1537,7 +1537,10 @@ function openProjectDetails(projectId) {
                 <h3>Images</h3>
                 <div class="project-detail-gallery">
                     ${data.images.map(image => `
-                        <img src="${image.src}" alt="${image.alt || data.title} image">
+                        <figure class="project-detail-figure">
+                            <img src="${image.src}" alt="${image.alt || data.title} image">
+                            <figcaption class="project-detail-caption">${image.alt || data.title}</figcaption>
+                        </figure>
                     `).join('')}
                 </div>
             </section>
