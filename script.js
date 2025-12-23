@@ -1574,11 +1574,11 @@ function openProjectDetails(projectId) {
     ].filter(Boolean).join('');
 
     const liveAction = data.liveUrl
-        ? `<a href="${data.liveUrl}" class="project-action project-visit" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span>Visit Site</span></a>`
+        ? `<a href="${data.liveUrl}" class="project-action project-visit" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span> View Demo</span></a>`
         : '';
 
     const githubAction = data.githubUrl
-        ? `<a href="${data.githubUrl}" class="project-action project-github" target="_blank" rel="noopener"><i class="fab fa-github"></i><span>View Repo</span></a>`
+        ? `<a href="${data.githubUrl}" class="project-action project-github" target="_blank" rel="noopener"><i class="fab fa-github"></i><span> View Repo</span></a>`
         : '';
 
     overlay.innerHTML = `
