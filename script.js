@@ -19,12 +19,13 @@ let launchOverlayHideTimeout = null;
 const projectsData = {
     "homelab": {
         title: "Homelab",
-        overview: "Self-hosted infrastructure cluster powering shared services for my family.",
-        description: "I designed the homelab to replace rented SaaS tools with Dockerized services running on energy-efficient hardware. Automation keeps apps updated while observability surfaces issues before they impact anyone.",
-        liveUrl: "https://github.com/techmoocher/homelab",
+        overview: "Self-hosted cloud infrastructure hosting services for my family.",
+        description: "I designed the homelab to help my family save money from cloud service subscriptions. The server is mainly made up of Dockerized services running on energy-efficient hardware. Moreover, I created scripts to automate system maintenance (updates, health check). Currently, I'm integrating AI agents to streamline system administration using n8n.",
+        liveUrl: "https://www.youtube.com/watch?v=UzMPf7gWfvw",
         githubUrl: "https://github.com/techmoocher/homelab",
         images: [
-            { src: "assets/images/projects/homelab/homelab.jpg", alt: "Homelab hardware and networking gear" }
+            { src: "assets/images/projects/homelab/homelab.jpg", alt: "My homelab setup" },
+            { src: "assets/images/projects/homelab/glance-dashboard.png", alt: "Glance Dashboard for basic system monitor"}
         ],
         features: [
             "Docker Compose stacks orchestrate media, storage, and collaboration apps with one command.",
@@ -58,7 +59,9 @@ const projectsData = {
         liveUrl: "https://www.youtube.com/watch?v=LDVFWf0XFPM",
         githubUrl: "https://github.com/techmoocher/Karu-the-Fox",
         images: [
-            { src: "assets/images/projects/Karu-the-Fox/techmoocher.png", alt: "Karu the Fox mascot" }
+            { src: "assets/images/projects/Karu-the-Fox/techmoocher.png", alt: "Karu the Fox mascot" },
+            { src: "assets/images/projects/Karu-the-Fox/preview-1.png", alt: "Karu the Fox demo (1)" },
+            { src: "assets/images/projects/Karu-the-Fox/preview-2.png", alt: "Karu the Fox demo (2)" }
         ],
         features: [
             "Animation engine with idle, sleep, surprise, and celebration states.",
@@ -121,6 +124,41 @@ const projectsData = {
 
     "chuoi-man-coi": {
         title: "Chuoi Man Coi",
+        overview: "Interactive rosary web app that guides students through each mystery with visuals, audio, and progress cues.",
+        description: "Built for my Binh Hung church students, the app combines catechesis with modern UX. Learners can track prayers, read reflections, and follow along even if they are new to the rosary.",
+        liveUrl: "https://chuoi-man-coi.techmoocher.com",
+        githubUrl: "https://github.com/techmoocher/Chuoi-Man-Coi",
+        images: [
+            { src: "assets/images/projects/Chuoi-Man-Coi/Chuoi-Man-Coi.png", alt: "Chuoi Man Coi logo" },
+            { src: "assets/images/projects/Chuoi-Man-Coi/demo.jpg", alt: "Chuoi Man Coi demo" },
+        ],
+        features: [
+            "Step-by-step rosary guide with visuals, current mystery context, and gentle audio cues.",
+            "Localized content for students with notes, prayers, and progress tracking.",
+            "Mobile-first interface so catechists can lead prayers directly from their phones."
+        ],
+        challenges: [
+            {
+                title: "Designing for all ages",
+                challenge: "Young students needed simple affordances while catechists requested deeper explanations.",
+                solution: "Introduced dual layers—concise prompts on the main screen with expandable cards for additional context."
+            },
+            {
+                title: "Reliability in low-connectivity environments",
+                challenge: "Parish halls do not always have strong Wi-Fi, so the app had to degrade gracefully.",
+                solution: "Optimized assets, cached the liturgical content, and preloaded audio snippets so sessions continue offline."
+            }
+        ],
+        impacts: [
+            "Helped students memorize and appreciate the rosary structure faster.",
+            "Enabled catechists to run interactive sessions without flipping through booklets.",
+            "Sparked interest from nearby parishes that now reuse the content."
+        ],
+        techStack: ["HTML", "CSS", "JavaScript"]
+    },
+
+    "hyprland-dotfiles": {
+        title: "Hyprland Dotfiles",
         overview: "Interactive rosary web app that guides students through each mystery with visuals, audio, and progress cues.",
         description: "Built for my Binh Hung church students, the app combines catechesis with modern UX. Learners can track prayers, read reflections, and follow along even if they are new to the rosary.",
         liveUrl: "https://chuoi-man-coi.techmoocher.com",
@@ -1575,11 +1613,11 @@ function openProjectDetails(projectId) {
     ].filter(Boolean).join('');
 
     const liveAction = data.liveUrl
-        ? `<a href="${data.liveUrl}" class="project-action project-visit" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span> View Demo</span></a>`
+        ? `<a href="${data.liveUrl}" class="project-action project-visit" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span>View Demo</span></a>`
         : '';
 
     const githubAction = data.githubUrl
-        ? `<a href="${data.githubUrl}" class="project-action project-github" target="_blank" rel="noopener"><i class="fab fa-github"></i><span> View Repo</span></a>`
+        ? `<a href="${data.githubUrl}" class="project-action project-github" target="_blank" rel="noopener"><i class="fab fa-github"></i> <span>View Repo</span></a>`
         : '';
 
     overlay.innerHTML = `
