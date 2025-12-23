@@ -667,6 +667,11 @@ function addIntermittentBlinkingStars() {
 }
 
 function initTypingAnimation() {
+    if (devicePreference === 'mobile' || document.body.getAttribute('data-device-mode') === 'mobile') {
+        toggleTypingVisibility('mobile');
+        return;
+    }
+
     const textElement = document.getElementById('typing-text');
     const plainText = "Welcome to ";
     const highlightText = "techmoocher's portfolio";
@@ -728,6 +733,19 @@ function initTypingAnimation() {
     }
     
     setTimeout(updateText, pauseTime);
+}
+
+function toggleTypingVisibility(mode) {
+    const typingContainer = document.querySelector('.typing-container');
+    if (!typingContainer) {
+        return;
+    }
+
+    if (mode === 'mobile') {
+        typingContainer.classList.add('typing-hidden');
+    } else {
+        typingContainer.classList.remove('typing-hidden');
+    }
 }
 
 function setupFakeCursor() {
@@ -1398,6 +1416,7 @@ function applyDevicePreference(device) {
 
     document.body.setAttribute('data-device-mode', normalizedDevice);
     highlightDeviceOption(normalizedDevice);
+    toggleTypingVisibility(normalizedDevice);
 
     if (normalizedDevice === 'desktop') {
         enableMusicFeature();

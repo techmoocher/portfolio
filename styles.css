@@ -1455,6 +1455,10 @@ body.music-disabled #music-widget {
     backdrop-filter: blur(5px);
     white-space: nowrap;
 }
+body[data-device-mode="mobile"] .typing-container,
+.typing-container.typing-hidden {
+    display: none !important;
+}
 
 .cursor {
     display: inline-block;
