@@ -1,8 +1,8 @@
 export const projectsData = {
     "homelab": {
         title: "Homelab",
-        overview: "Self-hosted cloud infrastructure hosting services for my family.",
-        description: "I designed the homelab to help my family save money from cloud service subscriptions. The server is mainly made up of Dockerized services running on energy-efficient hardware. Moreover, I created scripts to automate system maintenance (updates, health check). Currently, I'm integrating AI agents to streamline system administration using n8n.",
+        overview: "A self-hosted cloud infrastructure hosting services for my family.",
+        description: "Initially, inspired by my father's sticker shock and my passion for tinkering, I set up the homelab to help my family save money from cloud service subscriptions and to explore deeper the tech world. The server is mainly made up of containerized services running on energy-efficient hardware. Moreover, I created scripts to automate system maintenance (e.g, updates, health check). Currently, I'm integrating AI agents to streamline system administration using n8n.",
         liveUrl: "https://www.youtube.com/watch?v=UzMPf7gWfvw",
         githubUrl: "https://github.com/techmoocher/homelab",
         images: [
@@ -10,26 +10,39 @@ export const projectsData = {
             { src: "assets/images/projects/homelab/glance-dashboard.png", alt: "Glance Dashboard for basic system monitor"}
         ],
         features: [
-            "Docker Compose stacks orchestrate media, storage, and collaboration apps with one command.",
-            "Traefik reverse proxy secures services behind automatic HTTPS and identity-aware access.",
-            "Grafana and Prometheus dashboards track uptime, resource usage, and backup health."
+            "Proxmox VE orchestrates virtual machines and lightweight containers.",
+            "Cloudflare Tunnel provides secure remote access without exposing ports.",
+            "Nextcloud handles family document sharing.",
+            "Navidrome streams music to devices inside and outside the home (data is fetched from a container running FileBrowser).",
+            "Adguard Home blocks ads and trackers network-wide.",
+            "Vaultwarden keeps credentials safe and accessible.",
+            "Jellyfin serves as a media server for movies and TV shows.",
+            "Grafana and Prometheus dashboards track uptime, resource usage, and backup health.",
+            "Automated system maintenance with custom scripts and cron jobs.",
+            "n8n workflows to integrate AI agents for system administration tasks."
         ],
         challenges: [
             {
-                title: "Reliable uptime on hobby hardware",
-                challenge: "Running 24/7 services on single-board computers and recycled laptops risked thermal throttling and drive failures.",
-                solution: "Added health checks, smartctl monitoring, and nightly rsync snapshots to a ZFS pool so components can be swapped without data loss."
+                title: "Continuous uptime increases risk of hardware failure and electricity bill",
+                challenge: "Running 24/7 services on single-board computers and old laptop risked thermal throttling and drive failures.",
+                solution: [
+                    "Implemented <b>health checks</b>, <b>smartctl monitoring</b>, and <b>alerts for critical warnings and errors</b>. (log and alerts are sent to a Slack channel)",
+                    "Scheduled <b>regular downtimes and reboots</b>.",
+                    "Implemented <b>Wake-on-LAN to remotely power on devices</b> at desired time, or after downtimes or power outages.",
+                ]
             },
             {
                 title: "Private access without exposing ports",
                 challenge: "Residential internet lacks static IPs and makes port forwarding unreliable.",
-                solution: "Tunneled ingress through Cloudflare and automated dynamic DNS updates, keeping everything reachable without opening raw ports."
+                solution: [
+                    "Tunneled ingress through Cloudflare and automated dynamic DNS updates, keeping everything reachable without opening raw ports.",
+                ]
             }
         ],
         impacts: [
-            "Hosts photo backups, password vaults, and media streaming for the family in one place.",
-            "Eliminated recurring SaaS fees for five subscription services.",
-            "Provided a safe sandbox for experimenting with DevOps tooling and incident response lessons."
+            "Hosting 14 services (and still counting) for daily use and learning purpose, saved my family over $300 monthly.",
+            "Providing intuitive, ready-to-use file storage, photo backup, media streaming, and password manager.",
+            "Provided a safe sandbox for experimenting with networking, virtualization, and DevOps tooling."
         ],
         techStack: ["Proxmox", "Docker", "Cloudflare Tunnel", "Grafana", "Prometheus", "Python", "Bash", "Torrent"]
     },
@@ -141,35 +154,35 @@ export const projectsData = {
 
     "hyprland-dotfiles": {
         title: "Hyprland Dotfiles",
-        overview: "Interactive rosary web app that guides students through each mystery with visuals, audio, and progress cues.",
-        description: "Built for my Binh Hung church students, the app combines catechesis with modern UX. Learners can track prayers, read reflections, and follow along even if they are new to the rosary.",
-        liveUrl: "https://chuoi-man-coi.techmoocher.com",
-        githubUrl: "https://github.com/techmoocher/Chuoi-Man-Coi",
+        overview: "Wayland rice centered on Hyprland with smooth tiling, animations, and shortcut ergonomics.",
+        description: "I keep a reproducible Hyprland setup so laptops and desktops feel identical: tuned gaps and animations, predictable workspaces, and consistent keybinds across Waybar, Wofi, Kitty, and Neovim.",
+        githubUrl: "https://github.com/techmoocher/hyprland-dotfiles",
         images: [
-            { src: "assets/images/projects/Chuoi-Man-Coi/Chuoi-Man-Coi.png", alt: "Chuoi Man Coi prayer screen" }
+            { src: "assets/images/projects/hyprland-dotfiles/desktop.png", alt: "Hyprland desktop layout" },
+            { src: "assets/images/projects/hyprland-dotfiles/plan-sketch-v1.png", alt: "Layout sketch for the Hyprland setup" }
         ],
         features: [
-            "Step-by-step rosary guide with visuals, current mystery context, and gentle audio cues.",
-            "Localized content for students with notes, prayers, and progress tracking.",
-            "Mobile-first interface so catechists can lead prayers directly from their phones."
+            "Curated Hyprland rules for floating apps, scratchpads, and multi-monitor docking.",
+            "Waybar, Wofi, and Kitty themed for legibility with matching accent colors and nerd-font icons.",
+            "Session scripts to bootstrap wallpapers, services, and key remaps on login."
         ],
         challenges: [
             {
-                title: "Designing for all ages",
-                challenge: "Young students needed simple affordances while catechists requested deeper explanations.",
-                solution: "Introduced dual layers—concise prompts on the main screen with expandable cards for additional context."
+                title: "Keeping animations smooth on low-power laptops",
+                challenge: "Wayland effects can stutter when the iGPU is throttled or on battery saver profiles.",
+                solution: "Trimmed blur/radius defaults, lowered Hyprland animation damping, and added power-aware toggles for effects."
             },
             {
-                title: "Reliability in low-connectivity environments",
-                challenge: "Parish halls do not always have strong Wi-Fi, so the app had to degrade gracefully.",
-                solution: "Optimized assets, cached the liturgical content, and preloaded audio snippets so sessions continue offline."
+                title: "Reliable multi-monitor layout",
+                challenge: "Docking and undocking would reshuffle workspaces and bar modules.",
+                solution: "Scripted monitor rules and startup hooks that pin workspaces and reapply Waybar outputs after hotplug events."
             }
         ],
         impacts: [
-            "Helped students memorize and appreciate the rosary structure faster.",
-            "Enabled catechists to run interactive sessions without flipping through booklets.",
-            "Sparked interest from nearby parishes that now reuse the content."
+            "Predictable shortcuts and visuals across all machines, reducing context switching.",
+            "Faster cold boot into a ready-to-work session with preloaded services and terminals.",
+            "Shared repo helps friends reuse the config with minimal tweaks."
         ],
-        techStack: ["HTML", "CSS", "JavaScript"]
+        techStack: ["Hyprland", "Waybar", "Wofi", "Kitty", "Neovim", "Bash"]
     }
 };

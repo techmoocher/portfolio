@@ -188,6 +188,18 @@
     line-height: 1.7;
 }
 
+.project-detail-section strong,
+.project-detail-section b {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.project-detail-section em,
+.project-detail-section i {
+    font-style: italic;
+    color: #e5e5e5;
+}
+
 .project-detail-section ul {
     list-style: none;
     padding-left: 0;

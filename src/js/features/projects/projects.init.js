@@ -1,5 +1,22 @@
 import { projectsData } from "./project.data.js";
 
+const sanitizeInlineHTML = (html) => {
+  if (!html) return "";
+  const container = document.createElement("div");
+  container.innerHTML = html;
+  const allowed = new Set(["B", "STRONG", "I", "EM", "BR"]);
+
+  container.querySelectorAll("*").forEach((node) => {
+    if (!allowed.has(node.tagName)) {
+      node.replaceWith(document.createTextNode(node.textContent));
+    }
+  });
+
+  return container.innerHTML;
+};
+
+const renderInline = (value) => sanitizeInlineHTML(String(value ?? ""));
+
 export function initializeProjectTiles() {
   const tiles = document.querySelectorAll(".project-tile");
   tiles.forEach((tile) => {
@@ -35,7 +52,7 @@ export function openProjectDetails(projectId) {
   const ariaDescribedByAttr = describedByIds ? ` aria-describedby="${describedByIds}"` : "";
 
   const overviewMarkup = data.overview
-    ? `<p class="project-detail-overview" id="${detailOverviewId}">${data.overview}</p>`
+    ? `<p class="project-detail-overview" id="${detailOverviewId}">${renderInline(data.overview)}</p>`
     : "";
 
   const galleryMarkup = Array.isArray(data.images) && data.images.length > 0
@@ -62,7 +79,7 @@ export function openProjectDetails(projectId) {
     ? `
             <section class="project-detail-section">
                 <h3>Project Description</h3>
-                <p id="${detailDescriptionId}">${data.description}</p>
+                <p id="${detailDescriptionId}">${renderInline(data.description)}</p>
             </section>
         `
     : "";
@@ -72,7 +89,7 @@ export function openProjectDetails(projectId) {
             <section class="project-detail-section">
                 <h3>Key Features</h3>
                 <ul>
-                    ${data.features.map((feature) => `<li>${feature}</li>`).join("")}
+                    ${data.features.map((feature) => `<li>${renderInline(feature)}</li>`).join("")}
                 </ul>
             </section>
         `
@@ -85,13 +102,32 @@ export function openProjectDetails(projectId) {
                 <div class="project-detail-challenges">
                     ${data.challenges
                       .map(
-                        (challenge) => `
+                        (challenge) => {
+                          const solutionItems = Array.isArray(challenge.solution)
+                            ? challenge.solution
+                            : (typeof challenge.solution === "string" && challenge.solution.trim())
+                              ? [challenge.solution]
+                              : [];
+
+                          const solutionsMarkup = solutionItems.length
+                            ? `
+                                <div class="project-detail-solution">
+                                    <p class="project-detail-solution-label"><strong>Solution:</strong></p>
+                                    <ul>
+                                        ${solutionItems.map((item) => `<li>${renderInline(item)}</li>`).join("")}
+                                    </ul>
+                                </div>
+                              `
+                            : `<p><strong>Solution:</strong> ${renderInline(challenge.solution || "Not specified")}</p>`;
+
+                          return `
                         <div class="project-detail-challenge">
-                            <h4>${challenge.title}</h4>
-                            <p><strong>Challenge:</strong> ${challenge.challenge}</p>
-                            <p><strong>Solution:</strong> ${challenge.solution}</p>
+                            <h4>${renderInline(challenge.title)}</h4>
+                            <p><strong>Challenge:</strong> ${renderInline(challenge.challenge)}</p>
+                            ${solutionsMarkup}
                         </div>
-                    `
+                    `;
+                        }
                       )
                       .join("")}
                 </div>
@@ -104,7 +140,7 @@ export function openProjectDetails(projectId) {
             <section class="project-detail-section">
                 <h3>Impacts &amp; Results</h3>
                 <ul>
-                    ${data.impacts.map((impact) => `<li>${impact}</li>`).join("")}
+                    ${data.impacts.map((impact) => `<li>${renderInline(impact)}</li>`).join("")}
                 </ul>
             </section>
         `
