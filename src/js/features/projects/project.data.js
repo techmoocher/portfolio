@@ -10,32 +10,34 @@ export const projectsData = {
             { src: "assets/images/projects/homelab/glance-dashboard.png", alt: "Glance Dashboard for basic system monitor"}
         ],
         features: [
-            "Proxmox VE orchestrates virtual machines and lightweight containers.",
-            "Cloudflare Tunnel provides secure remote access without exposing ports.",
-            "Nextcloud handles family document sharing.",
-            "Navidrome streams music to devices inside and outside the home (data is fetched from a container running FileBrowser).",
-            "Adguard Home blocks ads and trackers network-wide.",
-            "Vaultwarden keeps credentials safe and accessible.",
-            "Jellyfin serves as a media server for movies and TV shows.",
-            "Grafana and Prometheus dashboards track uptime, resource usage, and backup health.",
-            "Automated system maintenance with custom scripts and cron jobs.",
-            "n8n workflows to integrate AI agents for system administration tasks."
+            "<b>Proxmox VE</b> orchestrates virtual machines and lightweight containers.",
+            "<b>Cloudflare Tunnel</b> provides secure remote access without exposing ports.",
+            "<b>Nextcloud</b> handles file sharing and backup for family.",
+            "<b>Navidrome</b> streams music to devices inside and outside the home (data is fetched from a container running FileBrowser).",
+            "<b>Adguard Home</b> blocks ads and trackers network-wide.",
+            "<b>Vaultwarden</b> keeps credentials safe and accessible.",
+            "<b>*Arr stack + qBittorent</b> to download movies, books, and TV shows. <b>Jellyfin</b> serves as a media server for movies and TV shows.",
+            "<b>Prometheus and Grafana dashboards</b> to track uptime, resource usage, and system health.",
+            "<b>Streamlined and automated system maintenance</b> with custom <b>scripts + cron jobs</b>, and <b>n8n workflows</b> integerating AI agents."
         ],
         challenges: [
             {
                 title: "Continuous uptime increases risk of hardware failure and electricity bill",
                 challenge: "Running 24/7 services on single-board computers and old laptop risked thermal throttling and drive failures.",
                 solution: [
-                    "Implemented <b>health checks</b>, <b>smartctl monitoring</b>, and <b>alerts for critical warnings and errors</b>. (log and alerts are sent to a Slack channel)",
+                    "Implemented <b>health checks</b>, <b>smartctl monitoring</b>, and <b>alerts for critical warnings and errors</b>. (logs and alerts are sent to a Slack channel)",
                     "Scheduled <b>regular downtimes and reboots</b>.",
                     "Implemented <b>Wake-on-LAN to remotely power on devices</b> at desired time, or after downtimes or power outages.",
                 ]
             },
             {
-                title: "Private access without exposing ports",
-                challenge: "Residential internet lacks static IPs and makes port forwarding unreliable.",
+                title: "Private and secured access without exposing ports",
+                challenge: "Exposing services directly to the Internet increases the attack surface and risk of breaches.",
                 solution: [
-                    "Tunneled ingress through Cloudflare and automated dynamic DNS updates, keeping everything reachable without opening raw ports.",
+                    "Implemented <b>Cloudflare Tunnel</b> to securely expose services without opening ports.",
+                    "Added <b>2FA and strong, unique passwords</b> and <b>regularly update softwares and dependencies</b> for all services.",
+                    "Enhanced <b>firewall rules</b> to restrict access to only necessary services and IP ranges.",
+                    "Implemented <b>Headscale on a Raspberry Pi</b> for an additional layer of security when accessing services remotely."
                 ]
             }
         ],
@@ -44,13 +46,13 @@ export const projectsData = {
             "Providing intuitive, ready-to-use file storage, photo backup, media streaming, and password manager.",
             "Provided a safe sandbox for experimenting with networking, virtualization, and DevOps tooling."
         ],
-        techStack: ["Proxmox", "Docker", "Cloudflare Tunnel", "Grafana", "Prometheus", "Python", "Bash", "Torrent"]
+        techStack: [ "Proxmox", "Docker", "Cloudflare Tunnel", "Python", "Bash", "n8n" ]
     },
 
     "Karu-the-Fox": {
         title: "Karu the Fox",
-        overview: "An interactive desktop companion that brings micro-breaks into long and hardworking days.",
-        description: "The project focuses on playful animations and lightweight interactions so classmates can keep a friendly, unobtrusive pet on their screens. I refined sprite timing and mood logic so the character feels responsive without stealing attention.",
+        overview: "An interactive desktop companion that brings enjoyable moments into long and hardworking days.",
+        description: "The project focuses on playful animations and lightweight interactions so classmates can keep a friendly, unobtrusive pet on their screens. I refined sprite timing and mood logic so the character feels responsive without stealing attention. The Chat feature is powered by AI, using the Gemini API, to keep conversations fresh and engaging.",
         liveUrl: "https://www.youtube.com/watch?v=LDVFWf0XFPM",
         githubUrl: "https://github.com/techmoocher/Karu-the-Fox",
         images: [
@@ -59,15 +61,21 @@ export const projectsData = {
             { src: "assets/images/projects/Karu-the-Fox/preview-2.png", alt: "Karu the Fox demo (2)" },
         ],
         features: [
-            "Animation engine with idle, sleep, surprise, and celebration states.",
-            "Customizable hotkeys to feed, move, or calm the companion from anywhere on the desktop.",
-            "Mood tracker that nudges users to stretch or hydrate after long focus streaks."
+            "Animation engine with idle, sleep, shock, and walking states.",
+            "AI-powered chat interface for engaging conversations.",
+            "Built-in music player with customizable playlist.",
+            "Pomodoro timer to boost productivity with focused work sessions.",
+            "Hydration and stretch reminders to promote healthy work habits."
         ],
         challenges: [
             {
-                title: "Smooth animation without burning CPU",
-                challenge: "Early prototypes relied on dense interval timers that spiked CPU usage during long running sessions.",
-                solution: "Rebuilt the loop with requestAnimationFrame-style timing utilities so frames align with the display refresh and idle gracefully."
+                title: "Smooth animation without excessive use of system resources",
+                challenge: "Initial implementations using setInterval, leading to choppy animations and high CPU usage.",
+                solution: [
+                    "Utilized <b>QTimer with optimized intervals</b> to balance smoothness and resource consumption.",
+                    "Implemented <b>sprite sheet optimization techniques</b> to reduce memory footprint and improve rendering performance.",
+                    "Adopted <b>lazy loading strategies</b> to load assets only when needed, minimizing initial load times.",
+                ]
             },
             {
                 title: "Keeping the pet out of the way",
