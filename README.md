@@ -17,7 +17,7 @@
 
 ## ABOUT ME 🦊
 
-<img align="right" alt="A quick brown fox jumps over a lazy dog" src="./images/a-quick-brown-fox.gif" width=30% height=40%
+<img align="right" alt="A quick brown fox jumps over a lazy dog" src="./.github/assets/a-quick-brown-fox.gif" width=30% height=40%
 style="padding-left: 50px; padding-bottom: 50px;"/>
 
 <br>
