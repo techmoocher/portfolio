@@ -41,7 +41,7 @@
 }
 
 .song-list-wrapper::-webkit-scrollbar {
-    width: 8px;
+    width: 2px;
 }
 
 .song-list-wrapper::-webkit-scrollbar-track {
@@ -51,13 +51,12 @@
 }
 
 .song-list-wrapper::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(108, 99, 255, 0.6), rgba(96, 219, 211, 0.6));
+    background: rgba(255, 255, 255, 0.25);
     border-radius: 8px;
-    border: 2px solid rgba(30, 27, 46, 0.3);
 }
 
 .song-list-wrapper::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, rgba(108, 99, 255, 0.8), rgba(96, 219, 211, 0.8));
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .song-list {
