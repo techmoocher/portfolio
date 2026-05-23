@@ -47,7 +47,7 @@
         </div>
     </div> -->
 
-    <!-- Music Player Widget -->
+    <!-- Music Player -->
     <div class="music-player">
         <div class="music-player-content">
             <div class="song-info">
@@ -130,14 +130,18 @@
             <span class="text">Music</span>
         </div>
     </div>
-    
-    <!-- Contact Card -->
+
+    <!-- CONTACT -->
     <div class="contact-card" id="contact-card">
         <div class="contact-header">
             <h3>Contact Me</h3>
             <span class="close-contact">&times;</span>
         </div>
         <div class="contact-info">
+            <div class="contact-item">
+                <i class="contact-icon phone-icon"></i>
+                <span class="contact-value" tabindex="0" title="Click to copy">+84 90 338 1820</span>
+            </div>
             <div class="contact-item">
                 <i class="contact-icon email-icon"></i>
                 <span class="contact-value" tabindex="0" title="Click to copy">ndvphuc276@gmail.com</span>
@@ -146,17 +150,13 @@
                 <i class="contact-icon email-icon"></i>
                 <span class="contact-value" tabindex="0" title="Click to copy">ima.techmoocher@gmail.com</span>
             </div>
-            <div class="contact-item">
-                <i class="contact-icon phone-icon"></i>
-                <span class="contact-value" tabindex="0" title="Click to copy">+84 90 338 1820</span>
-            </div>
         </div>
         <div class="social-icons">
             <a href="https://www.linkedin.com/in/ndvphuc27/" target="_blank" class="social-icon li-icon" title="LinkedIn"></a>
             <a href="https://github.com/techmoocher/" target="_blank" class="social-icon gh-icon" title="GitHub"></a>
             <a href="https://www.youtube.com/@techmoocher/" target="_blank" class="social-icon yt-icon" title="YouTube"></a>
             <!-- <a href="https://www.facebook.com/ndvphuc27/" target="_blank" class="social-icon fb-icon" title="Facebook"></a> -->
-            <a href="https://www.instagram.com/ndvphuc_27/" target="_blank" class="social-icon ig-icon" title="Instagram"></a>
+            <a href="https://www.instagram.com/https.ndvphuc_276/" target="_blank" class="social-icon ig-icon" title="Instagram"></a>
             <a href="https://wa.me/84903381820/" target="_blank" class="social-icon wa-icon" title="WhatsApp"></a>
         </div>
     </div>
@@ -184,7 +184,7 @@
                         <pre><code><span class="keyword">function</span> <span class="function-name">techmoocher</span>() {
   <span class="keyword">const</span> <span class="variable">info</span> = [
     <span class="string">"👨‍💻 <strong>Name:</strong> Phuc (Benjamin) Nguyen"</span>,
-    <span class="string">"🤵 <strong>Title:</strong> Student @ VNUHCM High School for the Gifted"</span>,
+    <span class="string">"🤵 <strong>Title:</strong> Freshman BSCS @ Rochester Institute of Technology"</span>,
     <span class="string">"💖 <strong>Hobbies:</strong> Running 🏃‍♂️, Cycling 🚴‍♂️, Piano 🎹, Coding 👨‍💻"</span>,
     <span class="string">"🛠 <strong>Skills:</strong> Python, C++, Java, HTML, CSS, Docker, and more!"</span>,
     <span class="string">'🔗 <strong>Find me at:</strong> <a href="https://github.com/techmoocher/" target="_blank">@techmoocher</a>'</span>,
@@ -229,6 +229,7 @@
         </div>
     </div>
 
+    <!-- PROJECTS -->
     <div id="projects-modal" class="modal-overlay">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -330,18 +331,16 @@
         </div>
     </div>
 
-    <!-- Song List Modal -->
+    <!-- Song List -->
     <div id="song-list-modal" class="modal-overlay">
         <div class="modal-content song-list-content">
             <span class="close-button">&times;</span>
             <h2 class="modal-title">Song Library</h2>
-            <div class="song-list">
-                <!-- Songs will be populated here dynamically -->
-            </div>
+            <div class="song-list"></div>
         </div>
     </div>
 
-    <!-- Device Selection Modal -->
+    <!-- Device Selection -->
     <div id="device-selection-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="device-selection-title" aria-describedby="device-selection-description">
         <div class="modal-content device-selection-content">
             <h2 class="modal-title" id="device-selection-title">Choose Your Experience</h2>
@@ -359,7 +358,6 @@
         </div>
     </div>
 
-    <!-- Launch Overlay -->
     <div id="launch-overlay" class="launch-overlay" role="status" aria-live="polite" hidden>
         <div class="launch-card">
             <div class="launch-spinner" aria-hidden="true"></div>
@@ -367,7 +365,6 @@
         </div>
     </div>
 
-    <!-- My Photo -->
     <div id="photo-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 550px; text-align: center;">
             <span class="close-button">&times;</span>
@@ -377,7 +374,7 @@
     </div>
 
     <audio id="audio-player"></audio>
-    
+
     <script type="module" src="src/js/main.js"></script>
 </body>
 </html>
