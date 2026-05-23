@@ -1,4 +1,4 @@
-export const projectsData = {
+    export const projectsData = {
     "homelab": {
         title: "Homelab",
         overview: "A self-hosted cloud infrastructure hosting services for my family.",
@@ -51,8 +51,8 @@ export const projectsData = {
 
     "Karu-the-Fox": {
         title: "Karu the Fox",
-        overview: "An interactive desktop companion that brings enjoyable moments into long and hardworking days.",
-        description: "The project focuses on playful animations and lightweight interactions so classmates can keep a friendly, unobtrusive pet on their screens. I refined sprite timing and mood logic so the character feels responsive without stealing attention. The Chat feature is powered by AI, using the Gemini API, to keep conversations fresh and engaging.",
+        overview: "An interactive desktop companion that brings enjoyable moments into long, hardworking days.",
+        description: "The project focuses on playful animations and lightweight interactions for a friendly pet on users' screens. The sprite timing and mood logic are refined so the character can be responsive without disturbing user. The Cat feature is powered by AI, using the Gemini API, to keep conversations relevant and engaging.",
         liveUrl: "https://www.youtube.com/watch?v=LDVFWf0XFPM",
         githubUrl: "https://github.com/techmoocher/Karu-the-Fox",
         images: [
@@ -61,7 +61,7 @@ export const projectsData = {
             { src: "assets/images/projects/Karu-the-Fox/preview-2.png", alt: "Karu the Fox demo (2)" },
         ],
         features: [
-            "Animation engine with idle, sleep, shock, and walking states.",
+            "Interactive animations with idle, sleep, shock, and walking states.",
             "AI-powered chat interface for engaging conversations.",
             "Built-in music player with customizable playlist.",
             "Pomodoro timer to boost productivity with focused work sessions.",
@@ -74,21 +74,16 @@ export const projectsData = {
                 solution: [
                     "Utilized <b>QTimer with optimized intervals</b> to balance smoothness and resource consumption.",
                     "Implemented <b>sprite sheet optimization techniques</b> to reduce memory footprint and improve rendering performance.",
-                    "Adopted <b>lazy loading strategies</b> to load assets only when needed, minimizing initial load times.",
+                    "Adopted <b>Lazy Loading</b> to load assets only when needed, minimizing initial load times.",
                 ]
             },
-            {
-                title: "Keeping the pet out of the way",
-                challenge: "Users wanted a visible companion but not one that blocked UI components or grabbed focus unexpectedly.",
-                solution: "Added smart positioning rules, transparency controls, and pointer-through regions that keep clicks on the underlying window."
-            }
         ],
         impacts: [
-            "Gave friends an easy way to lighten intense study sessions with playful feedback.",
-            "Sparked design discussions about balancing delight and productivity in desktop tools.",
-            "Showcased polish in presentation demos thanks to the character driven UI."
+            "Created a delightful desktop companion that enhances user experience during work hours.",
+            "Gained hands-on experience with PyQt6 for GUI development and animation handling.",
+            "Explored AI integration using Gemini API to create dynamic and context-aware interactions."
         ],
-        techStack: ["Python", "PyQt6", "Gemini API"]
+        techStack: ["Python", "PyQt6"]
     },
 
     "will-you-date-me": {
@@ -191,6 +186,6 @@ export const projectsData = {
             "Faster cold boot into a ready-to-work session with preloaded services and terminals.",
             "Shared repo helps friends reuse the config with minimal tweaks."
         ],
-        techStack: ["Hyprland", "Waybar", "Wofi", "Kitty", "Neovim", "Bash"]
+        techStack: ["Linux", "Hyprland", "Bash"]
     }
 };
